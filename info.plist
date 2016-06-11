@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>socketproxy</string>
+	<key>category</key>
+	<string>Internet</string>
+	<key>connections</key>
+	<dict>
+		<key>42111FDC-BAC0-4DEA-B869-ACE03EEDF421</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>8DB2E9FF-0D27-4B95-A8EF-1FAA4D891452</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>6E23343A-5BD4-4667-9774-00D281BF8A52</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>8DB2E9FF-0D27-4B95-A8EF-1FAA4D891452</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>5D725691-BD5D-40B5-8182-CF93BCC237C9</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Mark@Maxustech</string>
+	<key>description</key>
+	<string>Toggle the socket proxy for VPN tunnel</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Toggle socket proxy</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>2</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>SOCKS Proxy toggled</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>5D725691-BD5D-40B5-8182-CF93BCC237C9</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>query="{query}"
+
+function disable_proxy()
+{
+	networksetup -setsocksfirewallproxystate Wi-Fi off
+}
+
+if [ $query = "on" ]; then
+	disable_proxy
+	networksetup -setsocksfirewallproxy Wi-Fi 127.0.0.1 9999
+	networksetup -setsocksfirewallproxystate Wi-Fi on
+elif [ $query = "off" ]; then
+	disable_proxy
+fi</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>8DB2E9FF-0D27-4B95-A8EF-1FAA4D891452</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>sp</string>
+				<key>subtext</key>
+				<string>Toggle socket proxy for VPN tunnel</string>
+				<key>text</key>
+				<string>SocketProxy</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>42111FDC-BAC0-4DEA-B869-ACE03EEDF421</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>paths</key>
+				<array>
+					<string>/Applications/iTerm.app</string>
+				</array>
+				<key>toggle</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.launchfiles</string>
+			<key>uid</key>
+			<string>6E23343A-5BD4-4667-9774-00D281BF8A52</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>42111FDC-BAC0-4DEA-B869-ACE03EEDF421</key>
+		<dict>
+			<key>ypos</key>
+			<real>100</real>
+		</dict>
+		<key>5D725691-BD5D-40B5-8182-CF93BCC237C9</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>6E23343A-5BD4-4667-9774-00D281BF8A52</key>
+		<dict>
+			<key>ypos</key>
+			<real>200</real>
+		</dict>
+		<key>8DB2E9FF-0D27-4B95-A8EF-1FAA4D891452</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>
